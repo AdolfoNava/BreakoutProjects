@@ -1,0 +1,37 @@
+Fixes/Changes (Based on MonogameBoring changes):
+Controls: 
+Restart = Spacebar
+left = left arrow
+right = right arrow
+up = launch ball
+IF I DIDN'T mention a particular project file it means that I didn't edit them from the MonogameBoring project folder predecessor
+Game1.cs:
+- Rearranged the lines when the game components get implemented
+- Made a complete reset function by pressing the space bar reverts everything back to the start of the game
+Ball.cs:
+- Increase the speed of the ball by 2 applied when the ball bounces to the paddle and blocks
+- Fixed lives being lost when the ball hits the bottom of the screen
+- Resets the ball and Paddle on when the live should be lost
+Paddle.cs:
+- Increased the starting speed of the paddle to 250 feels better in my opinion
+- Increase the paddle speed when the ball gets close to the speed of the paddle by 50 each time.
+- OnPaddleStart state is set the speed reset back to 200 on "death"
+- Fixed the bouncing of the ball to be more like traditional breakout games
+(i.e. ball hitting left side of the paddle makes the ball move to the left and same on the other side)
+ScoreManager.cs: 
+- Added a NextLevel method to increase the level which would go into other levels
+- changed the SetupNewGame from being a private method to public to see it when we need to restart the game
+BlockManager.cs:
+- Changed the CreateBlockArrayByWidthAndHeight to add another in method variable for setting the level's block
+- Changed the LoadLevel method from protected to public and made a switch-case system calling for ScoreManager.Level to make a new level to make new calls to the
+ CreateBlockArrayByWidthAndHeight which would make more levels (basic levels but new ones nonetheless)
+- Add a new method to help make a new game start called ClearAllBlocksOnScreen which does exactly what it says to cleanup the screen for restarts
+- Trigger to increase the ball speed if the ball contact with the block
+- Automatically go into the next level when there are no more blocks to collide and resets the ball to the paddle
+Block.cs:
+- Changed the BlockState enum to include the new blocks I added into the game
+(earth,red, and yellow)
+- Added to an int to the constructor so that the game can change the blocks for the level with the blockmanager
+MonogameBlock.cs:
+- Made new blocks into the game that become more durable each level you head into
+- Added the new enums to the switch case from the BlockState that are connected to the new blocks to the game
